@@ -94,22 +94,22 @@ include('header.php');
                         </div>
                         <div class="col-md-6">
                             <div role="form" class="wpcf7">
-                                <form class="wpcf7-form">
+                                <form class="wpcf7-form" action="Insert-Mail" method="post" id="contact_form" name="contact_form">
                                     <p><label> Name *<br>
                                         <span class="wpcf7-form-control-wrap your-name">
-                                            <input name="your-name" value="" size="40"
+                                            <input name="contact_name" id="contact_name" value="" size="40"
                                                    class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
                                                    type="text"></span>
                                     </label></p>
                                     <p><label> Email *<br>
                                         <span class="wpcf7-form-control-wrap your-email">
-                                            <input name="your-email" value="" size="40"
+                                            <input name="contact_email" id="contact_email" value="" size="40"
                                                    class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
                                                    type="email"></span>
                                     </label></p>
                                     <p><label> Your Message *<br>
                                         <span class="wpcf7-form-control-wrap your-message">
-                                            <textarea name="your-message"
+                                            <textarea name="contact_message"
                                                       cols="40" rows="10"
                                                       class="wpcf7-form-control wpcf7-textarea"></textarea></span>
                                     </label></p>
@@ -130,6 +130,66 @@ include('footer.php');
 <a href="#" class="backtotop active">
     <i class="fa fa-angle-up"></i>
 </a>
+<script>
+    //Form Validation
+        $( document ).ready( function () {
+            $( "#contact_form" ).validate( {
+                rules: {
+                    
+                    contact_name: "required",
+                    contact_email:
+                    {
+                      required: true,
+                      email: true
+                    },
+                    contact_phone:
+                    {
+                      required: true,
+                      digits: true,
+                      minlength: 10,
+                      maxlength: 10
+                    },
+                    contact_message: "required",
+                },
+                messages: {
+                    
+                    contact_name: "Please Enter Username*",
+                    contact_subject: "Please Enter Subject*",
+                    contact_message: "Please Enter Message*",
+                    contact_email:
+                    {
+                      required: "Please Enter E-mail *",
+                      email: "Please Enter Valid E-mail *",
+                    },
+                    contact_phone:
+                    {
+                      required: "Please Enter Phone No. *",
+                      digits: "Please Enter Only Digits *",
+                      minlength: "Please Enter Only 10 Digits *",
+                      maxlength: "Please Enter Only 10 Digits *"
+                    },
+                },
+                errorElement: "em",
+                errorPlacement: function ( error, element ) {
+                    // Add the `invalid-feedback` class to the error element
+                    error.addClass( "invalid-feedback" );
+
+                    if ( element.prop( "type" ) === "checkbox" ) {
+                        error.insertAfter( element.next("br") );
+                    } else {
+                        error.insertAfter( element );
+                    }
+                },
+                highlight: function ( element, errorClass, validClass ) {
+                    $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+                }
+            } );
+
+        } );
+    </script>
 <script src="assets/js/jquery-1.12.4.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/chosen.min.js"></script>

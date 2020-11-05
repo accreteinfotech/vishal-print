@@ -25,6 +25,7 @@ RewriteRule ^Wishlist/?$ wishlist.php
 RewriteRule ^Update-Cart/?$ update_cart.php
 RewriteRule ^Insert-Checkout/?$ insert_checkout.php
 RewriteRule ^Insert-Order/?$ insert_order_item.php
+RewriteRule ^Insert-Mail/?$ insert_mail.php
 RewriteRule ^Checkout/?$ checkout.php
 RewriteRule ^Insert-Checkout/?$ insert_checkout.php
 RewriteRule ^Success/([a-zA-Z0-9]+)?$ send.php?sid=$1
