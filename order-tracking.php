@@ -4,7 +4,33 @@ ob_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <?php
+    include 'backyard/include/connect.php';
+    $seo=$link->rawQueryone("select * from page_seo where page_seo_url=?",array($page_name));
+    if($link->count > 0)
+    {
+        $page_seo_title=$seo['page_seo_title'];
+        $page_seo_description=$seo['page_seo_description'];
+        $page_seo_keywords=$seo['page_seo_keywords'];
+        $page_seo_author=$seo['page_seo_author'];
+        
+        $page_seo_og_title=$seo['page_seo_og_title'];
+        $page_seo_og_description=$seo['page_seo_og_description'];
+        $page_seo_og_url=$seo['page_seo_og_url'];
+    }
+    
+?>
+<title><?php echo $project_name; ?> | <?php echo $page_seo_title; ?></title>
+    <meta name="description" content="<?php echo $page_seo_description; ?>">
+    <meta name="keywords" content="<?php echo $page_seo_keywords; ?>" >
+    
+    <meta property="og:title" content="<?php echo $project_name; ?> | <?php echo $page_seo_og_title; ?>" />
+    <meta property="og:url" content="<?php echo $page_seo_og_url; ?>" />
+    <meta property="og:description" content="<?php echo $page_seo_og_description; ?>">
+    <base href="<?php echo $site_url; ?>">
+    <?php
+        include 'head_code.php';
+        ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;display=swap" rel="stylesheet">
